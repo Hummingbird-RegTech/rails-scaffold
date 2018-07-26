@@ -1,0 +1,82 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/Gemfile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'node_modules/**/*'
+    # (rg) this was added because Heroku CI was trying to run rubocop against all files under vendor
+    - 'vendor/**/*'
+    # (rg) Heroku CI adds this file to our build. It has a disable all rake command that rubocop doesn't like.
+    - 'lib/tasks/heroku_clear_tasks.rake'
+
+Rails:
+  Enabled: true
+
+Style/TrivialAccessors:
+  AllowDSLWriters: true
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Naming/FileName:
+  Exclude:
+    - '**/Rakefile'
+    - '**/Gemfile'
+
+Metrics/BlockLength:
+  Max: 35
+  Exclude:
+    - 'lib/tasks/*.rake'
+    - 'spec/**/*_spec.rb'
+    - 'spec/factories/**/*.rb'
+    - 'app/lib/encrypted_field.rb'
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 35
+
+Metrics/ModuleLength:
+  Max: 150
+
+Metrics/ClassLength:
+  Max: 300
+
+Metrics/AbcSize:
+  Max: 55
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/ParameterLists:
+  Max: 8
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Layout/ClosingParenthesisIndentation:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Layout/FirstParameterIndentation:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Layout/MultilineMethodCallBraceLayout:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - spec/**/*_spec.rb
+
